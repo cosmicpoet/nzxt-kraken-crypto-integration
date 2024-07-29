@@ -9,3 +9,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  background-color: rgb(256 256 256);
+  min-height: 100svh;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: rgb(38 38 38);
+  }
+}

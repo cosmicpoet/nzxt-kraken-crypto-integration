@@ -36,7 +36,7 @@
   </svg>
   <div class="absolute bottom-14">
     <p class="text-white text-[30px] font-medium">
-      GPU <span style="color: {color.toString()};">{temp}</span>°C
+      GPU <span style="color: {color.toString()};">{temp}</span>°
     </p>
   </div>
 </div>

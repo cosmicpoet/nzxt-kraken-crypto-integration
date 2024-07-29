@@ -36,7 +36,7 @@
   </svg>
   <div class="absolute top-14">
     <p class="text-white text-[30px] font-medium">
-      CPU <span style="color: {color.toString()};">{temp}</span>°C
+      CPU <span style="color: {color.toString()};">{temp}</span>°
     </p>
   </div>
 </div>

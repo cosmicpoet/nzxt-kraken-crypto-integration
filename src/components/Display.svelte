@@ -21,9 +21,9 @@
 
 <div
   class={twMerge(
-    'relative bg-black flex flex-col justify-center items-center',
+    'relative bg-black flex flex-col justify-center items-center select-none',
     `w-[640px] aspect-square`,
-    demoMode ? 'rounded-full scale-50' : 'rounded-none scale-100',
+    demoMode ? 'rounded-full scale-50 origin-top-left' : 'rounded-none scale-100',
   )}
 >
   <div class="absolute"><Plot data={timeseries} {width} /></div>
