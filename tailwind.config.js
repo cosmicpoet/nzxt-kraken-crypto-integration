@@ -6,7 +6,7 @@ export default {
     'variant',
     [
       '&:is([data-theme="dark"] *)',
-      '@media (prefers-color-scheme: dark) { &:not([data-theme="dark"] *) }',
+      '@media (prefers-color-scheme: dark) { &:not([data-theme="light"] *) }',
     ],
   ],
   content: ['./src/**/*.{html,js,svelte,ts}'],

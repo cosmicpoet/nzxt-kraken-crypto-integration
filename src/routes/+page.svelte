@@ -17,7 +17,7 @@
 </script>
 
 <TopNav />
-<main class="flex flex-col items-center dark:text-white dark:bg-neutral-800">
+<main class="flex flex-col items-center dark:text-white dark:bg-neutral-800 h-full">
   <div class="container grid grid-cols-2 gap-8 pt-16">
     <Configurator />
     <div class="space-y-4">

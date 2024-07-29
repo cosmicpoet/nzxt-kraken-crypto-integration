@@ -10,7 +10,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* html {
   background-color: rgb(256 256 256);
   min-height: 100svh;
 }
@@ -19,4 +19,9 @@ html {
   html {
     background-color: rgb(38 38 38);
   }
+} */
+
+body {
+  min-height: 100svh;
+  height: 1px;
 }

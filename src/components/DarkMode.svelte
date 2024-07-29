@@ -50,6 +50,7 @@
       class={twMerge(
         'flex items-center h-[30px] p-[1px] w-12 border border-neutral-300 rounded-full',
         darkMode ? 'bg-neutral-700 border-neutral-600' : 'bg-yellow-300',
+        'shadow-inner',
       )}
     >
       <span
@@ -57,6 +58,7 @@
           'flex justify-center items-center border-neutral-300 border rounded-full w-[26px] h-[26px] bg-white',
           darkMode ? 'translate-x-[18px] bg-neutral-800 border-neutral-700' : 'bg-white',
           'transition-all duration-200',
+          'drop-shadow-md',
         )}
       >
         {#if darkMode}
