@@ -12,9 +12,9 @@
   export let red = '#ff364d'
   export let green = '#58dd68'
 
-  let change = (data.at(-1)?.close ?? 1) - (data.at(0)?.close ?? 1)
-  let isUp = change > 0 ? true : false
-  let color = isUp ? green : red
+  $: change = (data.at(-1)?.close ?? 1) - (data.at(0)?.close ?? 1)
+  $: isUp = change > 0 ? true : false
+  $: color = isUp ? green : red
 
   $: x = d3.scaleTime(
     [data.at(0)?.timestamp ?? new Date(0), data.at(-1)?.timestamp ?? new Date()],
@@ -54,7 +54,9 @@
     </mask>
   </defs>
 
-  <path fill="none" stroke={color} stroke-width="3" d={line(data)} />
+  <!-- Line -->
+  <path fill="none" stroke={color} stroke-width="6" d={line(data)} />
 
+  <!-- Area -->
   <rect x="0" y="0" {width} {height} fill={color} mask="url(#mask1)" />
 </svg>
