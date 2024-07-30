@@ -1,11 +1,22 @@
-<script>
+<script lang="ts">
   import SelectInterval from '$components/SelectInterval.svelte'
   import SelectTheme from '$components/SelectTheme.svelte'
   import ShowCpuSwitch from '$components/ShowCPUSwitch.svelte'
   import ShowGpuSwitch from '$components/ShowGPUSwitch.svelte'
-  import { showCPUMonitor, showGPUMonitor } from '$stores/configurator'
+  import {
+    theme,
+    interval,
+    showCPUMonitor,
+    cpuHighTemp,
+    cpuLowTemp,
+    showGPUMonitor,
+    gpuHighTemp,
+    gpuLowTemp,
+  } from '$stores/configurator'
   import Input from './Input.svelte'
-  import { cpuHighTemp, cpuLowTemp, gpuHighTemp, gpuLowTemp } from '$stores/configurator'
+  import {} from '$stores/configurator'
+  import { page } from '$app/stores'
+  import UrlResultInput from './URLResultInput.svelte'
 
   const intervals = [
     { value: '24h', label: '24H' },
@@ -21,11 +32,31 @@
   $: cpuLowTemp.set(cpuLowTempInput)
   $: gpuHighTemp.set(gpuHighTempInput)
   $: gpuLowTemp.set(gpuLowTempInput)
+
+  $: configuration = {
+    theme: $theme,
+    interval: $interval,
+    showCPUMonitor: $showCPUMonitor ? 1 : 0,
+    cpuHighTemp: $showCPUMonitor ? $cpuHighTemp : undefined,
+    cpuLowTemp: $showCPUMonitor ? $cpuLowTemp : undefined,
+    showGPUMonitor: $showGPUMonitor ? 1 : 0,
+    gpuHighTemp: $showGPUMonitor ? $gpuHighTemp : undefined,
+    gpuLowTemp: $showGPUMonitor ? $gpuLowTemp : undefined,
+  }
+
+  function generateUrl(config: any) {
+    let searchParams = new URLSearchParams(config)
+    let url = new URL($page.url.origin + '/render')
+    url.search = searchParams.toString()
+    return url
+  }
+
+  $: renderUrl = generateUrl(configuration)
 </script>
 
 <div class="flex flex-col gap-8">
   <h2 class="text-xl font-medium text-title-light dark:text-title-dark">Configuration</h2>
-  <div>
+  <div class="space-y-12">
     <form class="flex flex-col gap-4">
       <div class="flex flex-col gap-0.5">
         <label class="text-sm" for="interval">Theme</label>
@@ -64,5 +95,17 @@
         </div>
       {/if}
     </form>
+    <div class="flex flex-col gap-0.5">
+      <label class="text-sm text-title-light dark:text-solid-dark" for="interval">
+        Web Integration URL
+      </label>
+      <UrlResultInput bind:value={renderUrl} />
+      <a
+        rel="noopenner noreferrer"
+        target="_blank"
+        class="text-sm text-title-light dark:text-title-dark"
+        href={renderUrl.toString()}>Visit Now</a
+      >
+    </div>
   </div>
 </div>

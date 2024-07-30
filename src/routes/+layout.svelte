@@ -10,6 +10,10 @@
   })
 </script>
 
+<svelte:head>
+  <title>NZXT Kraken Crypto Integration</title>
+</svelte:head>
+
 <QueryClientProvider client={queryClient}>
   <slot />
 </QueryClientProvider>
