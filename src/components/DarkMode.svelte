@@ -48,23 +48,23 @@
       on:click={toggleClient}
       formaction={`/?/setTheme&theme=${darkMode ? 'dark' : 'light'}`}
       class={twMerge(
-        'flex items-center h-[30px] p-[1px] w-12 border border-neutral-300 rounded-full',
-        darkMode ? 'bg-neutral-700 border-neutral-600' : 'bg-yellow-300',
+        'flex items-center h-[30px] p-[1px] w-12 border rounded-full',
+        darkMode ? 'bg-[#272962] border-[#5753C6]' : 'bg-[#BEE7F5] border-[#7CE2FE]',
         'shadow-inner',
       )}
     >
       <span
         class={twMerge(
-          'flex justify-center items-center border-neutral-300 border rounded-full w-[26px] h-[26px] bg-white',
-          darkMode ? 'translate-x-[18px] bg-neutral-800 border-neutral-700' : 'bg-white',
+          'flex justify-center items-center rounded-full w-[26px] h-[26px] bg-white',
+          darkMode ? 'translate-x-[18px] bg-neutral-800 border-[#5753C6]' : 'bg-white',
           'transition-all duration-200',
           'drop-shadow-md',
         )}
       >
         {#if darkMode}
-          <MoonIcon classes="size-4 fill-yellow-300" />
+          <MoonIcon classes="size-4 fill-[#FFE629]" />
         {:else}
-          <SunIcon classes="size-4 fill-red-300" />
+          <SunIcon classes="size-4 fill-[#F76B15]" />
         {/if}
       </span>
     </button>

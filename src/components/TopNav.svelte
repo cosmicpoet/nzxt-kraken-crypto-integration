@@ -5,12 +5,14 @@
 
 <nav
   class={twMerge(
-    'w-full h-16 flex justify-center items-center border-b border-bg-neutral-300',
-    'dark:bg-neutral-900 dark:border-neutral-600 dark:text-white',
+    'fixed w-full h-16 flex justify-center items-center bg-background-light-2 border-b border-border-light',
+    'dark:bg-background-dark-2 dark:border-border-dark',
   )}
 >
   <div class="container flex justify-between items-center">
-    <h1 class="font-semibold text-2xl">NZXT Kraken Crypto Integration</h1>
+    <h1 class="font-semibold text-2xl text-title-light dark:text-title-dark">
+      NZXT Kraken Crypto Integration
+    </h1>
     <DarkMode />
   </div>
 </nav>

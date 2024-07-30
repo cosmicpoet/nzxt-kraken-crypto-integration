@@ -1,33 +1,39 @@
 <script>
-  import Display from '$components/Display.svelte'
-  import { onMount } from 'svelte'
-  import { invalidateAll } from '$app/navigation'
   import TopNav from '$components/TopNav.svelte'
   import Configurator from '$components/Configurator.svelte'
-
-  export let data
-
-  onMount(() => {
-    const interval = setInterval(() => {
-      invalidateAll()
-    }, 60000)
-
-    return () => clearInterval(interval)
-  })
+  import Preview from '$components/Preview.svelte'
 </script>
 
 <TopNav />
-<main class="flex flex-col items-center dark:text-white dark:bg-neutral-800 h-full">
-  <div class="container grid grid-cols-2 gap-8 pt-16">
+<main
+  class="flex flex-col items-center bg-background-light-1 dark:text-white dark:bg-background-dark-1 h-full pt-16"
+>
+  <div class="container grid grid-cols-2 gap-36 pt-16">
     <Configurator />
-    <div class="space-y-4">
-      <h2 class="text-xl font-medium">Preview</h2>
-      <div class="relative">
-        <img src="kraken_elite.png" alt="Kraken Elite Display" />
-        <div class="absolute left-[73px] top-[92px]">
-          <Display timeseries={data.timeseries} current={data.current} demoMode={true} />
-        </div>
-      </div>
-    </div>
+    <Preview />
+  </div>
+  <div class="container space-y-4">
+    <h2 class="text-xl font-medium text-title-light dark:text-title-dark">Notes</h2>
+    <p>
+      This website generates web integration pages for NZXT's Kraken series liquid coolers. Some
+      limited configurations are allowed to customize the appearance.
+    </p>
+    <p>
+      It utilizes the free public API from OKX as the data provider. A user will be calling it
+      directly via this app every 60 seconds. This ensures the integration could be quickly deployed
+      to your cooler display without any special tweaking, whereas OKX is a reputable CEX with
+      reliable and accurate (enough) market data.
+    </p>
+    <p>
+      Only select high-profile cryptocurrencies are included due to data availability and the manual
+      labor of collecting cryptocurrency logo. You are welcome to submit a PR if you would like to
+      add some currency not listed on this website (if the data provider has the data).
+    </p>
+    <p>
+      Usage of this software is free under MIT License. It is more intended as an eyecandy for PC
+      builders who are using NZXT Kraken coolers and also happen to be a crypto fan. It is NOT
+      intended for financial uses and I am not liable for any losses incurred to the user while
+      using this software.
+    </p>
   </div>
 </main>

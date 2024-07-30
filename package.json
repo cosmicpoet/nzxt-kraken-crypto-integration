@@ -2,6 +2,7 @@
 	"name": "nzxt-kraken-crypto-integration",
 	"version": "0.0.1",
 	"private": true,
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -35,7 +36,9 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/inter": "^5.0.19",
+		"@tanstack/svelte-query": "^5.51.15",
 		"axios": "^1.7.2",
+		"bits-ui": "^0.21.13",
 		"colorjs.io": "^0.5.2",
 		"d3": "^7.9.0",
 		"tailwind-merge": "^2.4.0"
