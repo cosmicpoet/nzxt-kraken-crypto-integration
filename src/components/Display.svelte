@@ -14,6 +14,8 @@
   export let theme = 'dark'
   export let showCPUMonitor = true
   export let showGPUMonitor = true
+  export let cpuTemp = 69
+  export let gpuTemp = 42
   export let cpuHighTemp = 90
   export let cpuLowTemp = 20
   export let gpuHighTemp = 90
@@ -60,10 +62,10 @@
     </div>
     <div class="absolute w-[640px] h-[640px]">
       {#if showGPUMonitor}
-        <GpuMonitor {theme} minTemp={gpuLowTemp} maxTemp={gpuHighTemp} />
+        <GpuMonitor {theme} minTemp={gpuLowTemp} maxTemp={gpuHighTemp} temp={gpuTemp} />
       {/if}
       {#if showCPUMonitor}
-        <CpuMonitor {theme} minTemp={cpuLowTemp} maxTemp={cpuHighTemp} />
+        <CpuMonitor {theme} minTemp={cpuLowTemp} maxTemp={cpuHighTemp} temp={cpuTemp} />
       {/if}
     </div>
   {/if}

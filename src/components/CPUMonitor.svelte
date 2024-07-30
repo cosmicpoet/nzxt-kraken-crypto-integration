@@ -11,8 +11,8 @@
   $: progress = Math.max(Math.min((temp - minTemp) / (maxTemp - minTemp), 1), 0)
 
   let red = new Color('#ff3200')
-  let yellow = new Color('#c8ff00')
-  let yellowRed = yellow.range(red, { space: 'lch', outputSpace: 'srgb' })
+  $: yellow = theme === 'dark' ? new Color('#c8ff00') : new Color('#a9d800')
+  $: yellowRed = yellow.range(red, { space: 'lch', outputSpace: 'srgb' })
   $: color = yellowRed(progress)
 </script>
 

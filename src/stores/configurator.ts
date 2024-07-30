@@ -32,3 +32,5 @@ export const gpuLowTemp = writable(20)
 export const gpuHighTemp = writable(90)
 
 export const previewModel = writable('kraken_elite')
+export const previewCPUTemp = writable(69)
+export const previewGPUTemp = writable(42)

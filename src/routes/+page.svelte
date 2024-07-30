@@ -6,7 +6,7 @@
 
 <TopNav />
 <main
-  class="flex flex-col items-center bg-background-light-1 dark:text-white dark:bg-background-dark-1 h-full pt-16"
+  class="flex flex-col gap-8 items-center bg-background-light-1 dark:text-white dark:bg-background-dark-1 h-full pt-16"
 >
   <div class="container grid grid-cols-2 gap-36 pt-16">
     <Configurator />
