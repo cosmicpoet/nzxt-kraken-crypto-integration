@@ -13,7 +13,7 @@ export type TimeseriesEntry = {
 
 export type Timeseries = TimeseriesEntry[]
 
-export const fetchHistoricalPrice = async (interval: string) => {
+export const fetchHistoricalPrice = async (symbol: string, interval: string) => {
   let bar: string, limit: number
 
   if (interval === '24h') {
@@ -25,7 +25,7 @@ export const fetchHistoricalPrice = async (interval: string) => {
   }
 
   const response = await axios.get(
-    `https://www.okx.com/api/v5/market/index-candles?instId=SOL-USD&bar=${bar}&limit=${limit}`,
+    `https://www.okx.com/api/v5/market/index-candles?instId=${symbol}-USD&bar=${bar}&limit=${limit}`,
   )
 
   const responseData = response.data as OKXCandleSticksResponse

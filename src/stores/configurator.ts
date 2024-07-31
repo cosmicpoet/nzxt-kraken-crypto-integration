@@ -1,5 +1,7 @@
 import { writable } from 'svelte/store'
 
+export const coin = writable('solana')
+
 export const theme = writable('dark')
 
 export const interval = writable('24h')

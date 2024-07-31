@@ -2,6 +2,7 @@
   import { createQuery } from '@tanstack/svelte-query'
   import Display from '$components/Display.svelte'
   import {
+    coin,
     interval,
     theme,
     showGPUMonitor,
@@ -17,10 +18,13 @@
   import { fetchHistoricalPrice } from '$lib/fetchHistoricalPrice'
   import SelectModel from './SelectModel.svelte'
   import TempSlider from './TempSlider.svelte'
+  import { COIN_LIST } from '$lib/coins'
+
+  $: coinSymbol = COIN_LIST.find((coin) => coin.id === $coin)?.symbol ?? 'SOL'
 
   $: cryptoQuery = createQuery({
-    queryKey: ['crypto', 'data', $interval],
-    queryFn: async () => await fetchHistoricalPrice($interval),
+    queryKey: ['crypto', 'data', coinSymbol, $interval],
+    queryFn: async () => await fetchHistoricalPrice(coinSymbol, $interval),
     refetchInterval: 60000,
   })
 
@@ -51,6 +55,7 @@
       <Display
         query={cryptoQuery}
         demoMode={true}
+        coin={$coin}
         interval={$interval}
         theme={$theme}
         showCPUMonitor={$showCPUMonitor}

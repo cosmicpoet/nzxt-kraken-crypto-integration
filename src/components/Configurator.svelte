@@ -1,10 +1,12 @@
 <script lang="ts">
-  import SelectInterval from '$components/SelectInterval.svelte'
   import SelectTheme from '$components/SelectTheme.svelte'
+  import SelectCoin from '$components/SelectCoin.svelte'
+  import SelectInterval from '$components/SelectInterval.svelte'
   import ShowCpuSwitch from '$components/ShowCPUSwitch.svelte'
   import ShowGpuSwitch from '$components/ShowGPUSwitch.svelte'
   import {
     theme,
+    coin,
     interval,
     showCPUMonitor,
     cpuHighTemp,
@@ -14,14 +16,8 @@
     gpuLowTemp,
   } from '$stores/configurator'
   import Input from './Input.svelte'
-  import {} from '$stores/configurator'
   import { page } from '$app/stores'
   import UrlResultInput from './URLResultInput.svelte'
-
-  const intervals = [
-    { value: '24h', label: '24H' },
-    { value: '7d', label: '7D' },
-  ]
 
   $: cpuLowTempInput = 20
   $: cpuHighTempInput = 90
@@ -35,6 +31,7 @@
 
   $: configuration = {
     theme: $theme,
+    coin: $coin,
     interval: $interval,
     showCPUMonitor: $showCPUMonitor ? 1 : 0,
     cpuHighTemp: $showCPUMonitor ? $cpuHighTemp : undefined,
@@ -61,6 +58,10 @@
       <div class="flex flex-col gap-0.5">
         <label class="text-sm" for="interval">Theme</label>
         <SelectTheme />
+      </div>
+      <div class="flex flex-col gap-0.5">
+        <label class="text-sm" for="interval">Coin</label>
+        <SelectCoin />
       </div>
       <div class="flex flex-col gap-0.5">
         <label class="text-sm" for="interval">Interval</label>

@@ -21,8 +21,9 @@
     <div class="container space-y-4">
       <h2 class="text-xl font-medium text-title-light dark:text-title-dark">Notes</h2>
       <p>
-        This website generates web integration pages for NZXT's Kraken series liquid coolers. Some
-        limited configurations are allowed to customize the appearance.
+        This website generates web integration pages that track cryptocurrency prices for NZXT's
+        Kraken series liquid coolers. Some limited configurations are allowed to customize the
+        appearance.
       </p>
       <p>
         It utilizes the free public API from OKX as the data provider. A user will be calling it

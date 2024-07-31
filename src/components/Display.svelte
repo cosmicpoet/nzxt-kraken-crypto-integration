@@ -6,11 +6,13 @@
   import CpuMonitor from './CPUMonitor.svelte'
   import GpuMonitor from './GPUMonitor.svelte'
   import type { CreateQueryResult } from '@tanstack/svelte-query'
+  import { COIN_LIST } from '$lib/coins'
 
   export let query: CreateQueryResult<Timeseries, Error>
   export let width = 640
   export let demoMode = false
   export let interval = '24h'
+  export let coin = 'solana'
   export let theme = 'dark'
   export let showCPUMonitor = true
   export let showGPUMonitor = true
@@ -28,6 +30,19 @@
 
   $: changePct = change / ($query.data?.at(-1)?.close ?? 1)
   $: changePctString = `${isUp ? '+' : ''}${(changePct * 100).toFixed(2)}%`
+
+  $: decimals = currentPrice >= 1000 ? 1 : currentPrice >= 1 ? 2 : currentPrice >= 0.001 ? 4 : 8
+
+  function getCurrentPriceString(price: number, decimals: number) {
+    if (decimals <= 4) {
+      return price.toFixed(decimals)
+    }
+    const exponential = Number(currentPrice.toFixed(decimals)).toExponential()
+    const [significantDigits, zeroes] = exponential.split('e-')
+    return [(Number(zeroes) - 1).toString(), significantDigits.replace('.', '')]
+  }
+
+  $: currentPriceString = getCurrentPriceString(currentPrice, decimals)
 </script>
 
 <div
@@ -48,7 +63,13 @@
     </div>
     <div class="flex flex-col items-center relative z-10">
       <p class="current-price w-full font-medium text-[120px] leading-none text-center">
-        {currentPrice.toFixed(2)}
+        {#if typeof currentPriceString === 'string'}
+          {currentPriceString}
+        {:else}
+          <span
+            >.0<sub class="text-[48px]">{currentPriceString[0]}</sub>{currentPriceString[1]}</span
+          >
+        {/if}
       </p>
       <div class="absolute top-[120%] flex gap-2 items-center text-[30px] font-medium">
         <span>{interval}</span>
@@ -56,8 +77,11 @@
           {changePctString}
         </span>
       </div>
-      <div class="absolute flex gap-2 bottom-[120%] font-medium text-[48px]">
-        <Logo width={48} />Solana
+      <div class="absolute flex gap-2 bottom-[120%] font-medium text-[36px]">
+        <Logo {coin} size={36} {theme} />
+        <span class="whitespace-nowrap"
+          >{COIN_LIST.find((coinObj) => coinObj.id === coin)?.name}</span
+        >
       </div>
     </div>
     <div class="absolute w-[640px] h-[640px]">
