@@ -29,16 +29,40 @@
   $: gpuHighTemp.set(gpuHighTempInput)
   $: gpuLowTemp.set(gpuLowTempInput)
 
+  type Configuration = {
+    theme: string
+    coin: string
+    interval: string
+    showCPUMonitor: number
+    showGPUMonitor: number
+    cpuHighTemp?: number
+    cpuLowTemp?: number
+    gpuHighTemp?: number
+    gpuLowTemp?: number
+  }
+
   $: configuration = {
     theme: $theme,
     coin: $coin,
     interval: $interval,
     showCPUMonitor: $showCPUMonitor ? 1 : 0,
-    cpuHighTemp: $showCPUMonitor ? $cpuHighTemp : undefined,
-    cpuLowTemp: $showCPUMonitor ? $cpuLowTemp : undefined,
     showGPUMonitor: $showGPUMonitor ? 1 : 0,
-    gpuHighTemp: $showGPUMonitor ? $gpuHighTemp : undefined,
-    gpuLowTemp: $showGPUMonitor ? $gpuLowTemp : undefined,
+  } as Configuration
+
+  $: if ($showCPUMonitor) {
+    configuration = {
+      ...configuration,
+      cpuHighTemp: $cpuHighTemp,
+      cpuLowTemp: $cpuLowTemp,
+    }
+  }
+
+  $: if ($showGPUMonitor) {
+    configuration = {
+      ...configuration,
+      gpuHighTemp: $gpuHighTemp,
+      gpuLowTemp: $gpuLowTemp,
+    }
   }
 
   function generateUrl(config: any) {

@@ -8,17 +8,22 @@
   import type { MonitoringData } from '@nzxt/web-integrations-types/v1'
   import { onMount } from 'svelte'
 
-  $: searchParams = $page.url.searchParams
-  $: coin = searchParams.get('coin') ?? 'solana'
+  let searchParams: URLSearchParams | undefined
+
+  onMount(() => {
+    searchParams = $page.url.searchParams
+  })
+
+  $: coin = searchParams?.get('coin') ?? 'solana'
   $: coinSymbol = COIN_LIST.find((coinObj) => coinObj.id === coin)?.symbol ?? 'SOL'
-  $: interval = searchParams.get('interval') ?? '24h'
-  $: theme = searchParams.get('theme') ?? 'dark'
-  $: showCPUMonitor = searchParams.get('showCPUMonitor') !== '0'
-  $: showGPUMonitor = searchParams.get('showGPUMonitor') !== '0'
-  $: cpuHighTemp = Number(searchParams.get('cpuHighTemp') ?? 90)
-  $: cpuLowTemp = Number(searchParams.get('cpuLowTemp') ?? 20)
-  $: gpuHighTemp = Number(searchParams.get('gpuHighTemp') ?? 90)
-  $: gpuLowTemp = Number(searchParams.get('gpuLowTemp') ?? 20)
+  $: interval = searchParams?.get('interval') ?? '24h'
+  $: theme = searchParams?.get('theme') ?? 'dark'
+  $: showCPUMonitor = searchParams?.get('showCPUMonitor') !== '0'
+  $: showGPUMonitor = searchParams?.get('showGPUMonitor') !== '0'
+  $: cpuHighTemp = Number(searchParams?.get('cpuHighTemp') ?? 90)
+  $: cpuLowTemp = Number(searchParams?.get('cpuLowTemp') ?? 20)
+  $: gpuHighTemp = Number(searchParams?.get('gpuHighTemp') ?? 90)
+  $: gpuLowTemp = Number(searchParams?.get('gpuLowTemp') ?? 20)
 
   $: cryptoQuery = createQuery({
     queryKey: ['crypto', 'data', interval],
