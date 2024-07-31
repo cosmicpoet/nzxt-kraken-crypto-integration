@@ -5,6 +5,8 @@
   import { fetchHistoricalPrice } from '$lib/fetchHistoricalPrice'
   import { createQuery } from '@tanstack/svelte-query'
   import { twMerge } from 'tailwind-merge'
+  import type { MonitoringData } from '@nzxt/web-integrations-types/v1'
+  import { onMount } from 'svelte'
 
   $: searchParams = $page.url.searchParams
   $: coin = searchParams.get('coin') ?? 'solana'
@@ -24,8 +26,18 @@
     refetchInterval: 60000,
   })
 
-  $: cpuTemp = 69
-  $: gpuTemp = 42
+  let cpuTemp = 0
+  let gpuTemp = 0
+
+  onMount(() => {
+    if (window.nzxt?.v1) {
+      window.nzxt.v1.onMonitoringDataUpdate = (data: MonitoringData) => {
+        const { cpus, gpus } = data
+        cpuTemp = cpus[0].temperature?.valueOf() ?? 0
+        gpuTemp = gpus[0].temperature?.valueOf() ?? 0
+      }
+    }
+  })
 </script>
 
 <div

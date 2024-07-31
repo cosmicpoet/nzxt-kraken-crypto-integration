@@ -8,6 +8,9 @@ dependencies:
   '@fontsource/inter':
     specifier: ^5.0.19
     version: 5.0.19
+  '@nzxt/web-integrations-types':
+    specifier: ^0.4.0
+    version: 0.4.0
   '@tanstack/svelte-query':
     specifier: ^5.51.15
     version: 5.51.15(svelte@4.2.18)
@@ -468,6 +471,10 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
     dev: true
+
+  /@nzxt/web-integrations-types@0.4.0:
+    resolution: {integrity: sha512-ggbaSKql5eoN4Cm3s5fRv6EwWJPy+t0+DQzN2yiNTdQ7v140uP4H/0HUDprHmX1V8yv7GDI8TvlZSoZezprU1w==}
+    dev: false
 
   /@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
