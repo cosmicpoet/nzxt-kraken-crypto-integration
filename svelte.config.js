@@ -12,8 +12,11 @@ const config = {
     // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
     adapter: adapter(),
+    // paths: {
+    //   base: process.argv.includes('dev') ? '' : '/nzxt-kraken-crypto-integration'
+    // },
     paths: {
-      base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
+      base: process.env.NODE_ENV === 'production' ? '/nzxt-kraken-crypto-integration' : '',
     },
     alias: {
       $stores: 'src/stores',

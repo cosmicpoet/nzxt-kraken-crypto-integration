@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths'
   import { Select } from 'bits-ui'
   import ChevronDownIcon from '$components/icons/ChevronDownIcon.svelte'
   import { twMerge } from 'tailwind-merge'
@@ -51,7 +52,7 @@
     aria-label="Select an Interval"
   >
     <img
-      src={`logos/${selected.value}.svg`}
+      src={`${base}/logos/${selected.value}.svg`}
       alt={`${selected.label} Logo`}
       class={twMerge('size-6', INVERT_LOGO_COINS.includes(selected.value) && 'dark:invert')}
     />
@@ -77,7 +78,7 @@
         label={item.label}
       >
         <img
-          src={`logos/${item.value}.svg`}
+          src={`${base}/logos/${item.value}.svg`}
           alt={`${item.label} Logo`}
           class={twMerge('size-6', INVERT_LOGO_COINS.includes(item.value) && 'dark:invert')}
         />

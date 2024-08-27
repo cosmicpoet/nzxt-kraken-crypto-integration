@@ -67,7 +67,7 @@
 
   function generateUrl(config: any) {
     let searchParams = new URLSearchParams(config)
-    let url = new URL($page.url.origin + '/render')
+    let url = new URL($page.url.origin + $page.url.pathname + 'render')
     url.search = searchParams.toString()
     return url
   }
