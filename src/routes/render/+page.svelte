@@ -35,12 +35,18 @@
   let gpuTemp = 0
 
   onMount(() => {
-    if (window.nzxt?.v1) {
-      window.nzxt.v1.onMonitoringDataUpdate = (data: MonitoringData) => {
-        const { cpus, gpus } = data
-        cpuTemp = cpus[0].temperature?.valueOf() ?? 0
-        gpuTemp = gpus[0].temperature?.valueOf() ?? 0
-      }
+    window.nzxt = {
+      v1: {
+        onMonitoringDataUpdate: (data: MonitoringData) => {
+          const { cpus, gpus } = data
+          cpuTemp = Math.floor(cpus[0].temperature?.valueOf() ?? 50)
+          gpuTemp = Math.floor(gpus[0].temperature?.valueOf() ?? 50)
+        },
+        width: 600,
+        height: 600,
+        shape: 'circle',
+        targetFps: 1,
+      },
     }
   })
 </script>
